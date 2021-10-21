@@ -13,3 +13,6 @@ This menas that Vincent should get a small git for Uma, Uma for Tess and Tess fo
 ### How to use
 - Make sure you have [.net core 3.X](https://dotnet.microsoft.com/download/dotnet-core) and the [QDK](https://docs.microsoft.com/en-us/quantum/quickstarts/) (Quantum development kit from Microsoft) installed.
 - Inside the root folder of this project execute the project with `dotnet run`, or open the solution in visual studio and run it from there.
+
+#NOTE:
+i have cut out alot of the extra code, from Vincent and from the Quantum Kata on Satisfiability Problems -- to show only code required to solve the challenge for 3 people, to make learning this easier
