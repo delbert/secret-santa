@@ -1,6 +1,6 @@
 # Solve secret santa with Grover
 
-This repo contains the revised code which began with [this](https://vincent.frl/quantum-secret-santa/) blog post. It shows how to solve a secret sant raffle using the Grover Search algorithm.
+This folder contains the revised code which began with [this](https://vincent.frl/quantum-secret-santa/) blog post. It shows how to solve a secret sant raffle using the Grover Search algorithm.
 When executed the program will try to find a solution for 3 players:  Vincent Tess, and Uma, then prints the results to the terminal. The output should look like this: 
 ```
          | Vincent    | Uma        | Tess
