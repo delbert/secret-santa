@@ -8,9 +8,13 @@
 
 
     operation Oracle_SAT ( queryRegister : Qubit [] , target : Qubit ) : Unit is Adj {
-    //  ( 0 , 1 ) ( 2 , 3 ) ( 4 , 5 ) ( 2 , 4 ) ( 0 , 5 ) ( 1 , 3 )
+//    	    Vincent Tess Uma
+// Vincent     -    x(0) x(1)
+// Tess       x(2)   -   x(3)
+// Uma	      x(4)  x(5)  -
+//  ( 0 , 1 ) ( 2 , 3 ) ( 4 , 5 ) ( 2 , 4 ) ( 0 , 5 ) ( 1 , 3 )
 
-	    using ( aux = Qubit [ 6 ] ) {
+	    use aux = Qubit [ 6 ] {
             within {
                 ApplyToEachA ( CNOT ( _ , aux [ 0 ] ) , [ queryRegister [ 0 ] , queryRegister [ 1 ] ] ); 
                 ApplyToEachA ( CNOT ( _ , aux [ 1 ] ) , [ queryRegister [ 2 ] , queryRegister [ 3 ] ] ); 
@@ -26,7 +30,7 @@
     }
 
     operation Oracle_Converter ( markingOracle : ( ( Qubit [] , Qubit ) => Unit is Adj ) , register : Qubit [] ) : Unit is Adj {
-        using ( target = Qubit () ) {
+        use target = Qubit () {
             // Put the target into the |-⟩ state and later revert the state
             within { 
                 X ( target );
@@ -44,7 +48,7 @@
         let phaseOracle = Oracle_Converter ( oracle , _ );
         ApplyToEach ( H , register );
 
-        for ( _ in 1 .. numIterations ) {
+        for _ in 1 .. numIterations {
             phaseOracle ( register );
             within {
                 ApplyToEachA ( H , register );
@@ -60,7 +64,7 @@
     operation RunGroversSearch ( N : Int , oracle : ( ( Qubit [] , Qubit ) => Unit is Adj ) ) : Bool [] {
         // Try different numbers of iterations.
         mutable answer = new Bool [ N ];
-        using ( ( register , output ) = ( Qubit [ N ] , Qubit () ) ) {
+        use ( register , output ) = ( Qubit [ N ] , Qubit () ) {
             mutable correct = false;
             mutable iter = 1;
             repeat {
@@ -102,21 +106,21 @@
         let names = [ "Vincent" , "Uma    " , "Tess   " ];
         mutable count = 0;
         
-        for  ( i in 0 .. 3 ) {
+        for  i in 0 .. 3 {
             mutable line = "";
-            for ( j in 0 .. 3 ) {
-                if ( i == 0 ) {
-                    if ( j != 0 ) {
+            for j in 0 .. 3 {
+                if i == 0 {
+                    if j != 0 {
                         set line += $"| {names[j - 1]}    ";
                     } else {
                         //set line += "  ";
                         set line += "         ";
                     }
                 } else {
-					if ( j == 0 ) {
+					if j == 0 {
                         set line += $" {names[i - 1]} |";
                     } else {
-                        if ( i == j ) {
+                        if i == j {
                             //set line += "  X  |";
                             set line += "     X      |";
                         } else {
