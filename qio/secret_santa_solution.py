@@ -1,6 +1,3 @@
-# Copyright (c) Microsoft Corporation.
-# Licensed under the MIT License.
-
 from typing import List
 
 from azure.quantum import Workspace
@@ -11,6 +8,7 @@ workspace = Workspace(
     subscription_id =   'xxx', # add your subscription_id
     resource_group =    'xxx', # add your resource_group
     name =              'xxx', # add your workspace name
+    location =          'xxx'  # add your location
 )
 
 print ( 'init...' )
